@@ -1,0 +1,29 @@
+﻿@* Controller（EmployeesController）から渡されるデータの型を指定 *@
+@* 今回は「文字列のリスト（List<string>）」を受け取る設定 *@
+@using Employee_management_system1.Models
+@model List<Employee>
+
+@* ページの見出しを表示 *@
+<h1>社員一覧</h1>
+
+@* 社員データを表形式で表示するためのテーブル（枠線あり） *@
+<table border="1">
+    <tr>
+        @* テーブルのヘッダー行（見出し） *@
+        <th>ID</th>
+        <th>名前</th>
+        <th>部署</th>
+    </tr>
+
+    @* 受け取った社員リスト（Model）の件数分だけ、HTMLの行（<tr>）を繰り返し生成する *@
+    @* ※大文字の「Model」には、Controllerの return View(employees) で渡した中身が入っている *@
+    @foreach (var employee in Model)
+    {
+        <tr>
+            @* リストから1件ずつ取り出した社員情報（例："田中 営業"）をHTMLとして埋め込む *@
+            <td>@employee.Id</td>
+            <td>@employee.Name</td>
+            <td>@employee.Department</td>
+        </tr>
+    }
+</table>
