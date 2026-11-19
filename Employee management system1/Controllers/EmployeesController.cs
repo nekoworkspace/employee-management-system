@@ -1,6 +1,6 @@
-﻿// ASP.NET Core MVCの標準機能(ControllerやIActionResultなど)を使うための宣言
-using Microsoft.AspNetCore.Mvc;
-using Employee_management_system1.Models;
+﻿using Employee_management_system1.Data;     // データベース接続用クラス(ApplicationDbContext)を使うための宣言
+using Employee_management_system1.Models;   // モデルクラス(Employeeなど)を使うための宣言
+using Microsoft.AspNetCore.Mvc;             // ASP.NET Core MVCの標準機能(ControllerやIActionResultなど)を使うための宣言
 
 // このファイルが属するグループ(名前空間)の定義
 namespace Employee_management_system.Controllers
@@ -9,36 +9,27 @@ namespace Employee_management_system.Controllers
     // URLが「/Employees/...」のときにこのクラスが呼び出される
     public class EmployeesController : Controller
     {
-        // 「/Employees」または「/Employees/Index」にアクセスされたときに動く処理（アクション）
+        // データベースとやり取りするための窓口(コンテキスト)を保持する変数
+        // readonlyにすることで、コンストラクタ以外からの意図しない書き換えを防ぐ 
+        private readonly ApplicationDbContext _context;
+
+        // コンストラクタ(このクラスが作られるときに最初に実行される処理)
+        // DI(依存性の注入)によって、Program.csで登録したDB接続設定が自動的に渡される
+        public EmployeesController(
+            ApplicationDbContext context)
+        {
+            // 受け取ったDB接続用のインスタンスをクラス内の変数に保存する
+            _context = context;
+        }
+
+        // 社員一覧画面を表示するためのアクションメソッド
+        // URLが「/Employees」または「/Employees/Index」のときに呼び出される
         public IActionResult Index()
         {
-            // 画面に表示するための社員リスト（仮のデータ）を作成
-            // ※本来はここでデータベース（DBサーバ）から社員情報を取得することが多い
-            var employees = new List<Employee>()
-            {
-                new Employee
-                {
-                    Id = 1,
-                    Name = "田中",
-                    Department = "営業"
-                },
+            // データベースのEmployeesテーブルから全社員のデータを取得し、リスト形式に変換する
+            var employees = _context.Employees.ToList();
 
-                new Employee
-                {
-                    Id = 2,
-                    Name = "山田",
-                    Department = "開発"
-                },
-
-                new Employee
-                {
-                    Id = 3,
-                    Name = "鈴木",
-                    Department = "総務"
-                }
-            };
-
-            // 作成した社員リスト（employees）をView（Index.cshtml）に渡してHTMLを生成し、ブラウザへ返す
+            // 取得した社員リストを画面(Views/Employees/Index.cshtml)に渡して表示する
             return View(employees);
         }
     }
