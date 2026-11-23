@@ -33,6 +33,7 @@ namespace Employee_management_system.Controllers
             return View(employees);
         }
 
+
         [HttpGet]
         // 登録画面表示（GET）
         public IActionResult Create()
@@ -54,6 +55,7 @@ namespace Employee_management_system.Controllers
             // 登録後は社員一覧画面にリダイレクトする
             return RedirectToAction(nameof(Index));
         }
+
 
         [HttpGet]
         // 編集画面表示（GET）
@@ -83,6 +85,39 @@ namespace Employee_management_system.Controllers
             _context.SaveChanges();
 
             // 編集後は社員一覧画面にリダイレクトする
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        // 削除画面表示（GET）
+        public IActionResult Delete(int id)
+        {
+            // 指定されたIDの社員情報をデータベースから取得する
+            var employee = _context.Employees.Find(id);
+
+            // もし社員情報が見つからなければ、404 Not Foundを返す
+            if (employee == null)
+            {
+                // NotFound()は404エラーを返すASP.NET Core MVCの標準メソッド
+                return NotFound();
+            }
+
+            // 削除後は社員一覧画面にリダイレクトする
+            return View(employee);
+        }
+
+        [HttpPost]
+        // 削除処理（POST）
+        public IActionResult Delete(Employee employee)
+        {
+            // 受け取った社員情報をデータベースから削除する
+            _context.Employees.Remove(employee);
+
+            // 変更をデータベースに保存する
+            _context.SaveChanges();
+            
+            // 削除後は社員一覧画面にリダイレクトする
             return RedirectToAction(nameof(Index));
         }
     }
