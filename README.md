@@ -10,6 +10,7 @@ C#、ASP.NET Core MVC、SQL Server、Entity Framework Core の学習を行って
 ## 画面イメージ
 
 ※今後スクリーンショットを追加予定
+<img width="1274" height="368" alt="Index" src="https://github.com/user-attachments/assets/01d9506f-bd7d-4a37-8132-3b9a46012cbb" />
 
 ---
 
@@ -29,17 +30,25 @@ C#、ASP.NET Core MVC、SQL Server、Entity Framework Core の学習を行って
 
 登録されている社員情報を一覧表示します。
 
+<img width="735" height="403" alt="image" src="https://github.com/user-attachments/assets/ba5e4ef3-6cba-4fae-b4a5-bbce75b848ed" />
+
 ### 社員登録
 
 新しい社員を登録できます。
+
+<img width="696" height="360" alt="Create" src="https://github.com/user-attachments/assets/5b83a89a-3645-468e-9b5a-caf5e6163ee3" />
 
 ### 社員編集
 
 登録済み社員の情報を編集できます。
 
+<img width="675" height="396" alt="Edit" src="https://github.com/user-attachments/assets/a5de380d-3d25-4048-beb0-a5aefb99dc1f" />
+
 ### 社員削除
 
 不要になった社員情報を削除できます。
+
+<img width="698" height="436" alt="Delete" src="https://github.com/user-attachments/assets/be42b28f-f354-4d60-a608-4c7e6e85d8e7" />
 
 ---
 
