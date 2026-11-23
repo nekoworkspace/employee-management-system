@@ -9,8 +9,7 @@ C#、ASP.NET Core MVC、SQL Server、Entity Framework Core の学習を行って
 
 ## 画面イメージ
 
-※今後スクリーンショットを追加予定
-<img width="1274" height="368" alt="Index" src="https://github.com/user-attachments/assets/01d9506f-bd7d-4a37-8132-3b9a46012cbb" />
+<img width="1203" height="323" alt="Index" src="https://github.com/user-attachments/assets/6385dfc3-70b7-4a61-ac04-0d3173ddaf0f" />
 
 ---
 
