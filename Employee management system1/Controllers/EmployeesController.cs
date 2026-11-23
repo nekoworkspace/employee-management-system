@@ -32,5 +32,58 @@ namespace Employee_management_system.Controllers
             // 取得した社員リストを画面(Views/Employees/Index.cshtml)に渡して表示する
             return View(employees);
         }
+
+        [HttpGet]
+        // 登録画面表示（GET）
+        public IActionResult Create()
+        {
+            // 登録画面(Views/Employees/Create.cshtml)を表示する
+            return View();
+        }
+
+        [HttpPost]
+        // 登録処理（POST）
+        public IActionResult Create(Employee employee)
+        {
+            // 受け取った社員情報をデータベースに追加する
+            _context.Employees.Add(employee);
+
+            // 変更をデータベースに保存する
+            _context.SaveChanges();
+
+            // 登録後は社員一覧画面にリダイレクトする
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        // 編集画面表示（GET）
+        public IActionResult Edit(int id)
+        {
+            // 指定されたIDの社員情報をデータベースから取得する
+            var employee = _context.Employees.Find(id);
+
+            // もし社員情報が見つからなければ、404 Not Foundを返す
+            if (employee == null)
+            {
+                // NotFound()は404エラーを返すASP.NET Core MVCの標準メソッド
+                return NotFound();
+            }
+
+            // 取得した社員情報を編集画面(Views/Employees/Edit.cshtml)に渡して表示する
+            return View(employee);
+        }
+
+        [HttpPost]
+        // 編集処理（POST）
+        public IActionResult Edit(Employee employee)
+        {
+            // 受け取った社員情報をデータベースに更新する
+            _context.Employees.Update(employee);
+            // 変更をデータベースに保存する
+            _context.SaveChanges();
+
+            // 編集後は社員一覧画面にリダイレクトする
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

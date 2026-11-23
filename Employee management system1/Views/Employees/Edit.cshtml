@@ -1,0 +1,26 @@
+﻿@model Employee_management_system1.Models.Employee
+
+<h2>社員編集</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    
+    <div>
+        <label>氏名</label>
+        <input asp-for="Name" />
+    </div>
+    
+    <br />
+    
+    <div>
+        <label>部署</label>
+        <input asp-for="Department" />
+    </div>
+    
+    <br />
+    
+    <button type="submit">
+        更新
+    </button>
+</form>

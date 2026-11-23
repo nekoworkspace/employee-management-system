@@ -6,6 +6,13 @@
 @* ページの見出しを表示 *@
 <h1>社員一覧</h1>
 
+<p>
+    @* 新規登録リンク *@
+    <a asp-action="Create">
+        新規登録
+    </a>
+</p>
+
 @* 社員データを表形式で表示するためのテーブル（枠線あり） *@
 <table border="1">
     <tr>
@@ -13,6 +20,7 @@
         <th>ID</th>
         <th>名前</th>
         <th>部署</th>
+        <th>操作</th>
     </tr>
 
     @* 受け取った社員リスト（Model）の件数分だけ、HTMLの行（<tr>）を繰り返し生成する *@
@@ -24,6 +32,11 @@
             <td>@employee.Id</td>
             <td>@employee.Name</td>
             <td>@employee.Department</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@employee.Id">
+                    編集
+                </a>
+            </td>
         </tr>
     }
 </table>
